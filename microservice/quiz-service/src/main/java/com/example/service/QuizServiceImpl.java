@@ -25,10 +25,10 @@ public class QuizServiceImpl implements QuizService {
 		quiz.put("totalQuestions", selected.size());
 		quiz.put("questions", selected);
 
-		List<Integer> allIds=selected.stream().map(id->{selected.getId()}).toList();
+		List<Integer> allIds=selected.stream().map(q->q.getId()).toList();
 		Quiz quizToDb = new Quiz();
         quiz.setCategory(category);
-        quiz.setQuestionIds(ids);
+        quiz.setQuestionIds(allIds);
         quizRepository.save(quizToDb);
         
 		return quiz;
