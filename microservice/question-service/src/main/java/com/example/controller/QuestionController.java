@@ -24,8 +24,12 @@ public class QuestionController {
 	
 	
 	@GetMapping("/category/{cat}")
+	@CircuitBreaker(name="QuestionService",fallbackMethod ="getByCat")
 	public List<Question> getByCategory(@PathVariable String cat){
 		return questionService.getByCategory(cat);
+	}
+	public List<Question> getByCat(String cat, Exception ex){
+		 return List.of(new Question(0, "Fallback Question", "Service Unavailable", cat));
 	}
 	 @PostMapping
 	    public Question addQuestion(@RequestBody Question q) {
