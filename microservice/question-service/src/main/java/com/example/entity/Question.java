@@ -10,14 +10,22 @@ public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String question;
     private String answer;
     private String category;
-	public int getId() {
+    public Question() {}
+	public Question(Integer id, String question, String answer, String category) {
+		
+		this.id = id;
+		this.question = question;
+		this.answer = answer;
+		this.category = category;
+	}
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getQuestion() {
